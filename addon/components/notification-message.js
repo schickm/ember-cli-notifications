@@ -63,9 +63,14 @@ export default Component.extend({
     }
   }),
 
-  mouseDown() {
-    if (this.get('notification.onClick')) {
-      this.get('notification.onClick')(this.get('notification'));
+  click(event) {
+    if (event.target.hasAttribute('data-is-remove-button')) {
+      this.notifications.removeNotification(this.get('notification'));
+      if (this.get('notification.onRemoveClick')) {
+        this.get('notification.onRemoveClick')(this.get('notification'), event);
+      }
+    } else if (this.get('notification.onClick')) {
+      this.get('notification.onClick')(this.get('notification'), event);
     }
   },
   mouseEnter() {
@@ -97,7 +102,7 @@ export default Component.extend({
 
   actions: {
     removeNotification() {
-      this.notifications.removeNotification(this.get('notification'));
+      return this.notifications.removeNotification(this.get('notification'));
     }
   }
 });

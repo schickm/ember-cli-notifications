@@ -241,6 +241,18 @@ this.get('notifications').error('Something went wrong. Click to try again', {
     {{/themed-syntax}}
   </div>
   <div class="py2">
+    <h2>Notification with callback when X is clicked</h2>
+    <hr>
+    <p>Add the ability to trigger a callback when the X is clicked.</p>
+    {{#themed-syntax lang="js" theme="dark" class="h5" withBuffers=false}}
+this.get('notifications').error('Something went wrong. Click to try again', {
+  onRemoveClick: (notification) => {
+    this.get('model').destroy();
+  }
+});
+    {{/themed-syntax}}
+  </div>
+  <div class="py2">
     <h2>Config</h2>
     <hr>
     <h3>Icons</h3>
